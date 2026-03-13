@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+@theme {
+    --color-primary: #ec4899;
+    /* Pink-500 */
+    --color-secondary: #8b5cf6;
+    /* Violet-500 */
+    --color-accent: #06b6d4;
+    /* Cyan-500 */
+
+    --font-sans: "Inter", system-ui, sans-serif;
+
+    --animate-fade-in: fadeIn 0.5s ease-out;
+    --animate-slide-up: slideUp 0.5s ease-out;
+}
+
+@layer utilities {
+    .glass-panel {
+        @apply bg-white/10 backdrop-blur-lg border border-white/20 shadow-xl;
+    }
+
+    .gradient-text {
+        @apply bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-600;
+    }
+
+    .btn-primary {
+        @apply px-6 py-2 bg-gradient-to-r from-pink-500 to-violet-600 text-white rounded-full hover:shadow-lg hover:scale-105 transition-all duration-300 font-medium;
+    }
+
+    .nav-link {
+        @apply text-gray-700 hover:text-pink-600 transition-colors font-medium cursor-pointer;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+body {
+    @apply bg-slate-50 text-slate-800 antialiased;
+    background-image:
+        radial-gradient(at 0% 0%, rgba(236, 72, 153, 0.1) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(139, 92, 246, 0.1) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(6, 182, 212, 0.1) 0px, transparent 50%);
+    background-attachment: fixed;
+}
