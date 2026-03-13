@@ -10,23 +10,24 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // Attempt to load user from token on startup
-        const token = localStorage.getItem('sweatToFit_token');
-        if (token) {
-            axios.get('/api/auth/me', { headers: { Authorization: `Bearer ${token}` } })
-                .then(res => {
+        const fetchUser = async () => {
+            const token = localStorage.getItem('sweatToFit_token');
+            if (token) {
+                try {
+                    const res = await axios.get('/api/auth/me', { headers: { Authorization: `Bearer ${token}` } });
                     setUser(res.data);
-                })
-                .catch(err => {
+                } catch (err) {
                     console.error("Token invalid or expired", err);
                     localStorage.removeItem('sweatToFit_token');
-                })
-                .finally(() => {
+                } finally {
                     setLoading(false);
-                });
-        } else {
-            setLoading(false);
-        }
+                }
+            } else {
+                setLoading(false);
+            }
+        };
+
+        fetchUser();
     }, []);
 
     const register = async (userData) => {

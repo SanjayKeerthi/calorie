@@ -66,7 +66,7 @@ const AppRoutes = () => {
     )
 }
 
-function App() {
+const App = () => {
     return (
         <Router>
             <AuthProvider>
@@ -76,6 +76,6 @@ function App() {
             </AuthProvider>
         </Router>
     );
-}
+};
 
 export default App;
