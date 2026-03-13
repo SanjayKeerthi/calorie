@@ -1,21 +1,26 @@
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
 
-const trackerDataSchema = new mongoose.Schema({
+const trackerDataSchema = new mongoose.Schema(
+  {
     user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        required: true,
-        unique: true
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+      unique: true
     },
     bmi: {
-        type: Object,
-        default: null
+      type: Object,
+      default: null
     },
     logs: {
-        type: Map,
-        of: Object,
-        default: {}
+      type: Map,
+      of: Object,
+      default: {}
     }
-}, { timestamps: true });
+  },
+  { timestamps: true }
+);
 
-module.exports = mongoose.model('TrackerData', trackerDataSchema);
+const TrackerData = mongoose.model("TrackerData", trackerDataSchema);
+
+export default TrackerData;
